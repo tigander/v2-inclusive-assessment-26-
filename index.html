@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equity Lens for Assessment Design</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Marked.js for rendering Markdown responses from Gemini -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Markdown rendering styles */
+        .prose h1 { font-size: 1.5rem; font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem; color: #1e3a8a; }
+        .prose h2 { font-size: 1.25rem; font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem; color: #2563eb; }
+        .prose h3 { font-size: 1.125rem; font-weight: bold; margin-top: 0.75rem; margin-bottom: 0.5rem; }
+        .prose p { margin-bottom: 0.75rem; line-height: 1.6; }
+        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .prose li { margin-bottom: 0.25rem; }
+        .prose strong { font-weight: 600; color: #1f2937; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans text-gray-800 p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto space-y-8">
+        
+        <!-- Header -->
+        <div class="text-center space-y-2">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-600 tracking-tight">Equity Lens for Assessment Design</h1>
+            <p class="text-lg text-gray-600">Check your assessment for bias, fairness, and accessibility.</p>
+        </div>
+
+        <!-- Section 1: Assessment Details -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Your Assessment Details</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Text Area -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-700">Paste or type your assessment details here</label>
+                    <textarea id="assessmentInput" class="w-full h-80 p-4 bg-gray-50 border border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"></textarea>
+                </div>
+                
+                <!-- File Upload -->
+                <div class="flex flex-col space-y-2">
+                    <label class="block text-sm font-medium text-transparent select-none hidden lg:block">Spacer</label>
+                    <div class="flex-1 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center p-6 text-center hover:bg-gray-50 transition-colors relative">
+                        <input type="file" id="fileInput" accept=".txt,.csv,.md" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                        <p class="text-sm text-gray-500 mb-4">Or upload a file (text-based)</p>
+                        <button class="bg-blue-500 text-white font-semibold py-3 px-6 rounded-xl w-full max-w-xs hover:bg-blue-600 transition-colors pointer-events-none">
+                            Upload Assessment
+                        </button>
+                        <p class="text-xs text-gray-400 mt-4 max-w-xs mx-auto">PDF uploads are not supported in this version. Voice input is not yet supported.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Settings -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Settings</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <!-- Age Groups -->
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-4">Select Age Group / NZQA Level</h3>
+                    <div class="flex flex-wrap gap-3" id="ageGroupContainer">
+                        <!-- Buttons injected via JS -->
+                    </div>
+                </div>
+
+                <!-- Personas -->
+                <div>
+                    <h3 class="font-semibold text-gray-800 mb-4">Select Student Personas</h3>
+                    <div class="flex flex-wrap gap-3" id="personasContainer">
+                        <!-- Buttons injected via JS -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-4 flex gap-4 items-start">
+            <svg class="w-6 h-6 text-yellow-600 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div>
+                <h4 class="font-semibold text-yellow-800">Disclaimer:</h4>
+                <p class="text-sm text-yellow-700 mt-1">This tool provides guidance and ideas. It is an aid for reflection, not a definitive judgment. The ultimate responsibility for knowing and understanding the diverse and specific needs of your learners rests with you, the teacher.</p>
+            </div>
+        </div>
+
+        <!-- Action Area -->
+        <div class="flex flex-col items-center space-y-4">
+            <button id="generateBtn" class="bg-green-500 text-white font-bold text-lg py-4 px-10 rounded-full shadow-md hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-4 focus:ring-green-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+                Generate Reflections
+                <svg id="loadingSpinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </button>
+
+            <!-- Error Banner -->
+            <div id="errorBanner" class="hidden w-full max-w-2xl bg-red-500 text-white text-sm p-4 rounded-xl text-center font-medium shadow-md">
+                An error occurred. Please try again.
+            </div>
+        </div>
+
+        <!-- Results Area -->
+        <div id="resultsArea" class="hidden bg-white rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">Reflections & Recommendations</h2>
+            <div id="resultsContent" class="prose max-w-none text-gray-700">
+                <!-- Markdown content injected here -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Sample Assessment Text ---
+        const sampleAssessment = `Assessment Title: Habitat Interrelationships Final Quiz
+
+Subject: Science
+
+Year Level: Year 9/10 (Secondary)
+
+Duration: 50 minutes (no extra time given)
+
+Task:
+Students will answer a 4-page written test, which includes:
+1. Multiple choice questions (10 marks) on vocabulary and definitions.
+2. Two short essay questions (20 marks total) requiring recall of concepts and justification.
+3. A diagram labelling task (10 marks) of a complex food web.
+Conditions:
+- Closed book, no notes allowed.
+- Must be completed individually in silence.
+- Students must handwrite all answers clearly on the provided lined paper.
+- All digital devices (including phones and text-to-speech) are banned during the test.`;
+
+        // --- State Management ---
+        const state = {
+            assessmentText: sampleAssessment, // Set default text here
+            selectedAgeGroup: 'Secondary (Years 9-13)', // Default selection
+            selectedPersonas: new Set(['Dyslexic Learner', 'Māori Learner']) // Default selections
+        };
+
+        // --- Data Definitions ---
+        const ageGroups = [
+            'Primary (Years 1-6)', 
+            'Intermediate (Years 7-8)', 
+            'Secondary (Years 9-13)', 
+            'Tertiary/Vocational (NZQA L1-3)', 
+            'Degree/Diploma (NZQA L4-7)', 
+            'Post-grad/Doctoral (NZQA L8-10)'
+        ];
+
+        const personas = [
+            'Dyslexic Learner', 
+            'ADHD Learner', 
+            'Autistic Learner', 
+            'ESL Learner', 
+            'Student Needing Extension', 
+            'Student with Limited Digital Access', 
+            'Māori Learner', 
+            'Pasifika Learner'
+        ];
+
+        // --- DOM Elements ---
+        const els = {
+            ageGroupContainer: document.getElementById('ageGroupContainer'),
+            personasContainer: document.getElementById('personasContainer'),
+            assessmentInput: document.getElementById('assessmentInput'),
+            fileInput: document.getElementById('fileInput'),
+            generateBtn: document.getElementById('generateBtn'),
+            loadingSpinner: document.getElementById('loadingSpinner'),
+            errorBanner: document.getElementById('errorBanner'),
+            resultsArea: document.getElementById('resultsArea'),
+            resultsContent: document.getElementById('resultsContent')
+        };
+
+        // --- Initialization ---
+        function init() {
+            renderAgeGroups();
+            renderPersonas();
+            
+            // Populate the text area on load
+            els.assessmentInput.value = state.assessmentText;
+
+            // Event Listeners
+            els.assessmentInput.addEventListener('input', (e) => state.assessmentText = e.target.value);
+            els.generateBtn.addEventListener('click', handleGenerate);
+            els.fileInput.addEventListener('change', handleFileUpload);
+        }
+
+        // --- UI Rendering ---
+        function renderAgeGroups() {
+            els.ageGroupContainer.innerHTML = '';
+            ageGroups.forEach(group => {
+                const isSelected = state.selectedAgeGroup === group;
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    isSelected 
+                    ? 'bg-blue-600 text-white shadow-md' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`;
+                btn.textContent = group;
+                btn.onclick = () => {
+                    state.selectedAgeGroup = group;
+                    renderAgeGroups(); // Re-render to update classes
+                };
+                els.ageGroupContainer.appendChild(btn);
+            });
+        }
+
+        function renderPersonas() {
+            els.personasContainer.innerHTML = '';
+            personas.forEach(persona => {
+                const isSelected = state.selectedPersonas.has(persona);
+                const btn = document.createElement('button');
+                btn.className = `px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    isSelected 
+                    ? 'bg-blue-600 text-white shadow-md' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`;
+                btn.textContent = persona;
+                btn.onclick = () => {
+                    if (isSelected) {
+                        state.selectedPersonas.delete(persona);
+                    } else {
+                        state.selectedPersonas.add(persona);
+                    }
+                    renderPersonas(); // Re-render to update classes
+                };
+                els.personasContainer.appendChild(btn);
+            });
+        }
+
+        // --- File Handling ---
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const text = event.target.result;
+                state.assessmentText = text;
+                els.assessmentInput.value = text;
+            };
+            reader.readAsText(file);
+            // Reset input so the same file can be uploaded again if needed
+            e.target.value = '';
+        }
+
+        // --- Core Logic (API Call) ---
+        async function handleGenerate() {
+            const textToAnalyze = state.assessmentText.trim();
+            const personasArr = Array.from(state.selectedPersonas);
+            
+            // Validation
+            if (!textToAnalyze) {
+                showError("Please enter or upload assessment details first.");
+                return;
+            }
+            if (!state.selectedAgeGroup) {
+                showError("Please select an Age Group / NZQA Level.");
+                return;
+            }
+            if (personasArr.length === 0) {
+                showError("Please select at least one Student Persona.");
+                return;
+            }
+            
+            // UI Loading State
+            setLoading(true);
+            els.errorBanner.classList.add('hidden');
+            els.resultsArea.classList.add('hidden');
+
+            // Construct Prompts
+            const systemInstruction = "You are an expert educational consultant specializing in inclusive education, universal design for learning (UDL), and equity in assessment. Your goal is to review teacher assessment plans and provide constructive, actionable feedback to ensure the assessment is fair, unbiased, and accessible to specific student personas. Format your response clearly using Markdown with headings and bullet points.";
+            
+            const userPrompt = `
+Please review the following assessment details through an equity lens.
+
+Target Age Group / Level: ${state.selectedAgeGroup}
+Focus Student Personas: ${personasArr.join(', ')}
+
+Assessment Details:
+${textToAnalyze}
+
+Provide specific reflections on potential barriers these specific learners might face with this assessment, and offer concrete, actionable suggestions on how the teacher can adjust the assessment design, conditions, or criteria to make it more inclusive and equitable for them.
+            `;
+
+            try {
+                // Fetch from our Vercel Serverless Function Backend
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userPrompt: userPrompt,
+                        systemInstruction: systemInstruction
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || "An error occurred while generating the reflections.");
+                }
+
+                const generatedText = data.text;
+                
+                // Render Markdown and display
+                els.resultsContent.innerHTML = marked.parse(generatedText);
+                els.resultsArea.classList.remove('hidden');
+                
+                // Scroll to results
+                els.resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            } catch (err) {
+                console.error(err);
+                showError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                els.generateBtn.disabled = true;
+                els.loadingSpinner.classList.remove('hidden');
+                els.generateBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            } else {
+                els.generateBtn.disabled = false;
+                els.loadingSpinner.classList.add('hidden');
+                els.generateBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+        }
+
+        function showError(message) {
+            els.errorBanner.textContent = message;
+            els.errorBanner.classList.remove('hidden');
+        }
+
+        // Start App
+        init();
+
+    </script>
+</body>
+</html>
