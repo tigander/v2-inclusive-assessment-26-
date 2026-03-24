@@ -1,0 +1,103 @@
+APA CITATION TO USE: Inclusive assessment design for diverse learners in Aotearoa New Zealand. (2025). Unpublished document.
+
+====================================================================================================
+SOURCE FILE: inclusive_assessment_resources_nz.docx
+SOURCE TYPE: DOCX
+EXTRACTION FORMAT: Plain text from document body
+NOTE: Original DOCX pagination is not preserved in plain-text extraction
+====================================================================================================
+
+Inclusive Assessment Design for Diverse Learners in Aotearoa New Zealand
+
+This document brings together key research and guidance to support educators working from early childhood education (ECE) through to tertiary education in Aotearoa New Zealand. The focus is on inclusive assessment design for diverse learners — including ākonga who are dyslexic, Māori, Pasifika, multilingual/English‑language learners (ESOL), autistic, those with limited access to technology, and others who may face barriers to learning. The resources summarised here are primarily from New Zealand sources such as Ako Aotearoa, NZCER, the Teaching Council, universities and specialist journals. Each section outlines the main ideas and practical recommendations for designing fair assessments that allow all learners to demonstrate their capabilities. Citations refer back to the original documents.
+
+1. Universal Design for Learning and Inclusive Assessment Principles
+
+UDL overview and guiding principles
+
+The concept of Universal Design for Learning (UDL) underpins many of the New Zealand resources. UDL is a framework for proactively designing learning environments and assessments that meet the needs of all learners. A Kairaranga article highlights the three core UDL principles — providing multiple means of engagement, multiple means of representation and multiple means of action and expression【557671583151091†L11-L34】. It notes that UDL aligns with Te Whāriki (the early childhood curriculum) and encourages educators to anticipate diverse learners’ needs rather than retrofit accommodations【557671583151091†L11-L34】.
+
+Ako Aotearoa’s comprehensive guide to UDL similarly emphasises that flexible learning environments should be designed from the outset to remove barriers and allow every learner to become “expert learners” who are purposeful and motivated【764598191485146†L50-L96】. The guide encourages educators to build learner agency by giving students choices in how they access materials and demonstrate understanding【764598191485146†L50-L96】.
+
+Inclusive teaching practice guidance (Teaching Council, 2025)
+
+The Teaching Council’s Inclusive Teaching Practice Guidance (draft 2025) provides sector‑wide expectations for inclusive teaching from ECE to secondary education. The guidance emphasises removing barriers to learning by modifying the curriculum, pedagogy and assessment to ensure all learners can participate. It encourages teachers to design environments that are accessible and to provide multiple ways for students to access and express learning【404184754514110†L21-L47】.
+
+Inclusive assessment design strategies (University of Waikato)
+
+The University of Waikato outlines concrete strategies for inclusive assessment design. It recommends offering choice in assessment mode (e.g., written, oral, creative or visual), providing assessment instructions in multiple formats (text, audio, visual), clearly communicating assessment criteria, and giving learners opportunities to ask questions【459772700071072†L420-L431】. These strategies align with UDL principles by addressing different learning preferences and reducing the need for after‑the‑fact accommodations.
+
+Inclusive design overview (University of Auckland)
+
+On the Rethinking Assessment site, the University of Auckland notes that inclusive design involves proactively designing for accessibility and equity. It emphasises that assessments should respect learners with varied motor control, sensory perception and cognitive abilities, and that designers should not wait for students to request accommodations【657658904107678†L47-L67】. The page stresses that inclusive assessments require anticipating diverse needs and embedding support mechanisms from the start【657658904107678†L47-L67】.
+
+Accommodating diversity in assessment (NZCER report, 2022)
+
+NZCER’s report Accommodating diversity in assessment investigates special assessment conditions (SAC) and inclusive assessment design. The report promotes a shift from reactive SAC provision to universal design; it recommends eliminating construct‑irrelevant barriers (e.g., font size, reading load) and designing flexible tasks that allow learners to demonstrate the same learning outcomes through different modes【310128504290626†L63-L73】. It provides short‑, medium‑ and long‑term recommendations to reduce reliance on SAC and move towards inclusive practices.
+
+Making NCEA assessment more equitable (NZCER article, 2023)
+
+Another NZCER article explores how UDL principles can make NCEA assessments more equitable. The authors argue that embedding UDL into assessment design reduces the need for special conditions and helps eliminate construct‑irrelevant variables — aspects of tasks that are not related to the knowledge or skills being assessed. They suggest designing tasks that match the focal knowledge/skills and providing multiple ways for students to show learning【789700467199028†L100-L137】. The article stresses that inclusive assessments benefit all learners and align with the NCEA Change Programme’s goals of fairness and accessibility.
+
+2. Resources for Specific Groups
+
+Dyslexic learners
+
+Dyslexia‑Friendly Style Guide (Ako Aotearoa, 2023) – This short guide provides practical tips for creating print and digital resources that are easy to read for people with dyslexia. Recommendations include using simple sans‑serif fonts, reasonable font sizes (12–14 pt), avoiding full‑word capitalisation, using high‑contrast colours (e.g., dark text on a light background), clear headings with extra spacing, bullet points to break up text, and concise sentences【774004119529615†L70-L160】. It also encourages educators to chunk information, provide visual prompts (flowcharts, mind maps), allow extra time, and offer alternative assessment options【774004119529615†L169-L180】. The guide notes that dyslexia‑friendly resource design is just one part of creating inclusive environments【774004119529615†L70-L96】.
+
+Evaluating the effectiveness of support interventions for adult dyslexic learners (Ako Aotearoa, 2018) – This national project studied interventions across training providers and industries. The literature review in the report emphasises that dyslexia impacts each person differently; therefore interventions and assessments need to be flexible and person‑centred【382142700484077†L159-L169】. The report identifies a wrap‑around model of support for dyslexic learners and lists reasonable adjustments (e.g., assistive technologies, extra time) that improve learning【382142700484077†L104-L134】. It also emphasises the positive dyslexia movement, which focuses on learners’ strengths rather than deficits【382142700484077†L159-L189】. While the report centres on adult education, its findings underscore the importance of designing assessments that allow learners to demonstrate strengths and use assistive tools without being penalised.
+
+Māori learners
+
+Inclusive assessment for Māori learners requires culturally responsive approaches. Although there is no single assessment document, several resources emphasise the need to incorporate te ao Māori values and provide assessments that reflect Māori ways of knowing. The Kairaranga article on UDL notes that UDL’s strengths‑based, person‑centred approach aligns with Māori values【21057684156046†L91-L109】. Educators should collaborate with whānau, use culturally relevant contexts, and allow learners to demonstrate knowledge through oral, visual or practical means rather than relying solely on written tasks.
+
+Pasifika learners
+
+Pasifika Resource Kit final report (Ako Aotearoa, 2019) – This project aimed to enhance Pasifika success in tertiary education. The report highlights the importance of contextualised and culturally relevant learning environments, improved teaching approaches, responsive student services, and increased visibility of Pasifika culture【876659733982857†L163-L204】. For assessment, it recommends recognising Pasifika identities, languages and cultural practices, offering flexible ways for students to demonstrate understanding, and involving Pasifika communities in co‑designing assessments.
+
+ESOL and multilingual learners
+
+The ESOL Online site provides guidance for educators working with English‑language learners who also have special educational needs. It notes that migrant and refugee students with special education needs are entitled to support and can receive ESOL funding concurrently. The page emphasises using narrative assessment and bilingual assessment services to differentiate between language‑learning needs and disabilities, ensuring students’ strengths and identities are recognised【844523147988229†L94-L123】. Educators are encouraged to provide assessment instructions in learners’ first languages and collaborate with families to ensure assessments are culturally and linguistically appropriate.
+
+Autistic learners and neurodiversity
+
+Promoting inclusive practice for autistic learners (Kairaranga, 2023) – This article argues that UDL can enhance inclusive practices for autistic learners. It describes UDL as a person‑centred, strengths‑based framework that aligns with Māori worldviews and fosters cultural responsiveness【21057684156046†L91-L109】. The authors note that adoption of UDL in primary schools is inconsistent and call for increased professional learning to help teachers implement UDL strategies.
+
+Appreciating and supporting neurodiversity (ConCOVE, 2024) – A recent vocational education report defines inclusive assessment as the same assessment taken by all students. It explains that an alternative assessment is a task that achieves the same learning outcomes but allows students to demonstrate knowledge through different media, with equivalent marking criteria【919540243872705†L112-L140】. The report encourages educators to offer alternative or flexible assessments to meet diverse needs without compromising standards.
+
+Learners without access to technology
+
+Digital assessments offer many benefits, but they can create barriers for learners without reliable technology. The Trends in assessment report from NZCER notes that contemporary assessment practices emphasise multiple sources of evidence, digital tools and student‑centred approaches【822545325540424†L90-L98】. When using online assessments, educators should provide paper‑based or low‑tech alternatives, ensure students have access to devices and support, and design tasks that do not assume high levels of digital literacy. Allowing students to submit assessments orally, on paper or via simple digital formats can mitigate technology barriers.
+
+3. Examples and Case Studies
+
+Alternative assessment for inclusive teaching (TeachWell/University of Auckland)
+
+This case study describes a university lecturer who offered alternative assessment options (e.g., oral or slide presentations instead of written essays) to students with ADHD and specific learning disabilities. Students reported that the alternative formats allowed them to perform to their potential; however, the lecturer noted challenges in marking across different formats and pointed to the need for institutional support【974417411817377†L245-L289】. The case illustrates how flexible assessments can reduce stress and improve outcomes for neurodiverse learners when coupled with clear criteria.
+
+Learning better together (IHC, 2009)
+
+While focused on school inclusion rather than assessment, this book advocates for inclusive school culture, community involvement and narrative assessment approaches that capture students’ learning in rich, descriptive ways【523062047305894†L70-L90】. Narrative assessment can be particularly useful for students with disabilities or those learning English, as it emphasises holistic progress rather than single test scores.
+
+4. Practical Recommendations for Educators
+
+Drawing on the above resources, the following strategies can support inclusive assessment design across educational settings:
+
+1.  Design for diversity from the start. Apply UDL principles to anticipate varied needs rather than adding accommodations later. Provide multiple ways for learners to access information (written, oral, visual) and demonstrate learning (written tasks, presentations, practical work, portfolios).
+2.  Ensure assessments test what they intend to measure. Remove construct‑irrelevant barriers (e.g., complex language, unnecessary time pressures, confusing formats) that might disadvantage particular learners【789700467199028†L100-L137】. Focus on assessing the targeted knowledge or skill.
+3.  Offer choice and flexibility. Allow students to select assessment formats that align with their strengths and cultural contexts. For example, Māori or Pasifika students may prefer oral presentations or group projects; dyslexic learners may favour practical demonstrations; autistic learners may succeed with structured portfolios or visual projects.
+4.  Communicate clearly. Provide assessment instructions in plain language, supplement written instructions with audio or visual explanations, and ensure students know the criteria and expectations【459772700071072†L420-L431】. Give timelines and chunk tasks to support executive functioning【774004119529615†L174-L180】.
+5.  Use culturally responsive practices. Engage with whānau and communities to co‑design assessments that reflect Māori and Pasifika values. Use contexts and examples that are relevant to learners’ lives and allow the use of home languages in instructions and responses【876659733982857†L163-L204】【844523147988229†L94-L123】.
+6.  Provide assistive technology and low‑tech alternatives. Offer tools such as screen readers, speech‑to‑text and text‑to‑speech software for learners who benefit from them【774004119529615†L169-L173】. When assessments require digital submission, ensure learners without technology can complete equivalent tasks using paper or low‑tech methods.
+7.  Encourage self‑advocacy and reflection. Ask learners how they learn best and involve them in decision‑making about assessment formats【774004119529615†L178-L183】. Encourage students to reflect on their strengths and areas where support is needed.
+
+5. Additional Resources
+
+-   Dyslexia resources: Ako Aotearoa hosts a collection of dyslexia resources, including the Dyslexia Adult Screening Test guide and other tools (accessible via ako.ac.nz).
+-   Inclusive Education Guides: The Ministry of Education’s Inclusive Education website (inclusive.tki.org.nz) provides step‑by‑step guidance on designing inclusive assessments and taking a UDL approach, though some pages require JavaScript to view. Downloadable PDFs such as Take a UDL approach and Design assessments to enable students to demonstrate their understanding outline practical strategies.
+-   NZCER’s research: Reports on assessment trends, SAC, and equity provide evidence‑based recommendations for policy and practice【822545325540424†L90-L98】【310128504290626†L63-L73】.
+-   ConCOVE neurodiversity report: Offers definitions and practical advice for inclusive and alternative assessments in vocational education【919540243872705†L112-L140】.
+
+How to use these materials
+
+Educators and institutions can use this document as a starting point for professional development or policy reviews. For each resource summarised here, consider accessing the full report or guide from the original source to gain deeper understanding. When adding materials to a knowledge base or learning management system, ensure that content is licensed for reuse (many Ako Aotearoa resources are published under Creative Commons licences) and that students’ privacy and cultural considerations are respected.
