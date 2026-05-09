@@ -3,135 +3,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equity Lens for Assessment Design v2</title>
-    <!-- Tailwind CSS for styling -->
+    <title>Equity Lens for Assessment Design — FutureLearning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Marked.js for rendering Markdown responses from Gemini -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        /* Custom scrollbar for a cleaner look */
+        :root {
+            --fl-orange: #E8601C;
+            --fl-navy: #1B2A4A;
+            --fl-charcoal: #2D2D2D;
+            --fl-light-grey: #F0F0F0;
+            --fl-teal: #2A7F7F;
+            --fl-white: #FFFFFF;
+            --fl-font-heading: 'Montserrat', Arial, sans-serif;
+            --fl-font-body: 'Inter', Arial, sans-serif;
+            --fl-font-quote: 'Playfair Display', Georgia, serif;
+            --fl-radius: 10px;
+            --fl-radius-sm: 6px;
+            --fl-radius-lg: 16px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: var(--fl-font-body);
+            background-color: var(--fl-light-grey);
+            color: var(--fl-charcoal);
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem 1rem;
+        }
+
+        /* Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-        
-        /* Markdown rendering styles */
-        .prose h1 { font-size: 1.5rem; font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem; color: #1e3a8a; }
-        .prose h2 { font-size: 1.25rem; font-weight: bold; margin-top: 1rem; margin-bottom: 0.5rem; color: #2563eb; }
-        .prose h3 { font-size: 1.125rem; font-weight: bold; margin-top: 0.75rem; margin-bottom: 0.5rem; }
-        .prose p { margin-bottom: 0.75rem; line-height: 1.6; }
-        .prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
-        .prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.75rem; }
-        .prose li { margin-bottom: 0.25rem; }
-        .prose strong { font-weight: 600; color: #1f2937; }
+        ::-webkit-scrollbar-track { background: #e8e8e8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #c0c0c0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a0a0a0; }
+
+        /* Layout */
+        .fl-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .fl-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .fl-logo {
+            height: 36px;
+            margin-bottom: 1.5rem;
+        }
+
+        .fl-header h1 {
+            font-family: var(--fl-font-heading);
+            font-weight: 800;
+            font-size: 2.25rem;
+            color: var(--fl-navy);
+            margin: 0 0 0.5rem;
+            line-height: 1.2;
+        }
+
+        .fl-header p {
+            font-family: var(--fl-font-body);
+            font-size: 1rem;
+            color: #666;
+            margin: 0;
+        }
+
+        .fl-rule {
+            border: none;
+            border-top: 2px solid var(--fl-orange);
+            width: 48px;
+            margin: 1rem auto;
+        }
+
+        /* Cards */
+        .fl-card {
+            background: var(--fl-white);
+            border-radius: var(--fl-radius-lg);
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .fl-card h2 {
+            font-family: var(--fl-font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--fl-navy);
+            border-bottom: 2px solid var(--fl-orange);
+            padding-bottom: 0.4rem;
+            margin: 0 0 1.5rem;
+            display: inline-block;
+        }
+
+        .fl-card h3 {
+            font-family: var(--fl-font-heading);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--fl-navy);
+            margin: 0 0 0.75rem;
+        }
+
+        /* Text area */
+        .fl-textarea {
+            width: 100%;
+            height: 20rem;
+            padding: 1rem;
+            background: var(--fl-light-grey);
+            border: 1.5px solid #ddd;
+            border-radius: var(--fl-radius);
+            resize: none;
+            font-family: var(--fl-font-body);
+            font-size: 0.9rem;
+            color: var(--fl-charcoal);
+            line-height: 1.5;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .fl-textarea:focus {
+            border-color: var(--fl-navy);
+        }
+
+        /* Upload zone */
+        .fl-upload-zone {
+            border: 2px dashed #ccc;
+            border-radius: var(--fl-radius);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            height: 20rem;
+            position: relative;
+            transition: background 0.15s;
+            cursor: pointer;
+        }
+
+        .fl-upload-zone:hover {
+            background: var(--fl-light-grey);
+        }
+
+        .fl-upload-zone input[type="file"] {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .fl-upload-zone p {
+            font-size: 0.85rem;
+            color: #888;
+            margin: 0 0 1rem;
+        }
+
+        .fl-upload-zone small {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 0.75rem;
+            max-width: 240px;
+        }
+
+        /* Pill buttons */
+        .fl-pill {
+            padding: 0.4rem 1rem;
+            border-radius: 999px;
+            font-family: var(--fl-font-body);
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s, border-color 0.15s;
+            background: var(--fl-light-grey);
+            color: var(--fl-charcoal);
+            border-color: #ddd;
+        }
+
+        .fl-pill:hover {
+            background: #e2e2e2;
+        }
+
+        .fl-pill.selected {
+            background: var(--fl-navy);
+            color: var(--fl-white);
+            border-color: var(--fl-navy);
+        }
+
+        /* Secondary upload button inside upload zone */
+        .fl-btn-secondary {
+            background: var(--fl-navy);
+            color: var(--fl-white);
+            font-family: var(--fl-font-heading);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: var(--fl-radius);
+            padding: 0.7rem 1.5rem;
+            cursor: pointer;
+            pointer-events: none;
+            transition: background 0.15s;
+        }
+
+        /* Primary CTA */
+        .fl-btn-primary {
+            background: var(--fl-orange);
+            color: var(--fl-white);
+            font-family: var(--fl-font-heading);
+            font-weight: 700;
+            font-size: 1.05rem;
+            border: none;
+            border-radius: 999px;
+            padding: 1rem 2.5rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 12px rgba(232,96,28,0.25);
+        }
+
+        .fl-btn-primary:hover:not(:disabled) {
+            background: var(--fl-navy);
+            box-shadow: 0 6px 16px rgba(27,42,74,0.2);
+            transform: translateY(-1px);
+        }
+
+        .fl-btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Disclaimer */
+        .fl-disclaimer {
+            background: var(--fl-white);
+            border-left: 4px solid var(--fl-orange);
+            border-radius: var(--fl-radius);
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--fl-charcoal);
+        }
+
+        .fl-disclaimer-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        .fl-disclaimer-header h3 {
+            font-family: var(--fl-font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--fl-navy);
+            margin: 0;
+        }
+
+        .fl-disclaimer p {
+            line-height: 1.6;
+            margin: 0 0 0.6rem;
+        }
+
+        .fl-disclaimer p:last-child { margin: 0; }
+
+        /* Error */
+        .fl-error {
+            background: #fef2f2;
+            color: #b91c1c;
+            border: 1px solid #fecaca;
+            border-radius: var(--fl-radius);
+            padding: 0.875rem 1.25rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Results */
+        .fl-results {
+            background: var(--fl-white);
+            border-radius: var(--fl-radius-lg);
+            border: 1px solid #e0e0e0;
+            padding: 2rem 2.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .fl-results h2 {
+            font-family: var(--fl-font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--fl-navy);
+            border-bottom: 2px solid var(--fl-orange);
+            padding-bottom: 0.4rem;
+            margin: 0 0 1.5rem;
+            display: inline-block;
+        }
+
+        /* Markdown prose */
+        .fl-prose { color: var(--fl-charcoal); line-height: 1.65; }
+        .fl-prose h1 { font-family: var(--fl-font-heading); font-weight: 800; font-size: 1.4rem; color: var(--fl-navy); margin: 1.25rem 0 0.5rem; }
+        .fl-prose h2 { font-family: var(--fl-font-heading); font-weight: 700; font-size: 1.15rem; color: var(--fl-navy); margin: 1.25rem 0 0.5rem; }
+        .fl-prose h3 { font-family: var(--fl-font-heading); font-weight: 600; font-size: 1rem; color: var(--fl-navy); margin: 1rem 0 0.4rem; }
+        .fl-prose p { margin-bottom: 0.75rem; }
+        .fl-prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .fl-prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.75rem; }
+        .fl-prose li { margin-bottom: 0.3rem; }
+        .fl-prose strong { font-weight: 600; color: var(--fl-navy); }
+
+        /* Grid helpers */
+        .fl-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1.25rem 1rem; }
+            .fl-card { padding: 1.5rem; }
+            .fl-header h1 { font-size: 1.65rem; }
+            .fl-grid-2 { grid-template-columns: 1fr; }
+            .fl-upload-zone { height: auto; min-height: 10rem; }
+            .fl-textarea { height: 14rem; }
+        }
+
+        /* Spinner */
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .fl-spinner {
+            width: 1.1rem;
+            height: 1.1rem;
+            border: 2px solid rgba(255,255,255,0.4);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+            display: none;
+        }
     </style>
 </head>
-<body class="bg-gray-50 min-h-screen font-sans text-gray-800 p-4 md:p-8">
+<body>
 
-    <div class="max-w-5xl mx-auto space-y-8">
-        
+    <div class="fl-container">
+
         <!-- Header -->
-        <div class="text-center space-y-2">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-600 tracking-tight">Equity Lens for Assessment Design v2</h1>
-            <p class="text-lg text-gray-600">Check your assessment for bias, fairness, and accessibility.</p>
+        <div class="fl-header">
+            <img src="https://drive.google.com/uc?export=view&id=18iHl3zU-H6RDoBsLC81DH722Dv3qlNzv" alt="FutureLearning" class="fl-logo">
+            <h1>Equity Lens for Assessment Design</h1>
+            <hr class="fl-rule">
+            <p>Check your assessment for bias, fairness, and accessibility.</p>
         </div>
 
         <!-- Section 1: Assessment Details -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Your Assessment Details</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Text Area -->
-                <div class="space-y-2">
-                    <label class="block text-sm font-medium text-gray-700">Paste or type your assessment details here</label>
-                    <textarea id="assessmentInput" class="w-full h-80 p-4 bg-gray-50 border border-gray-200 rounded-xl resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"></textarea>
+        <div class="fl-card">
+            <h2>Your Assessment Details</h2>
+            <div class="fl-grid-2">
+                <div>
+                    <label style="display:block; font-size:0.85rem; font-weight:500; color:#555; margin-bottom:0.5rem;">Paste or type your assessment details here</label>
+                    <textarea id="assessmentInput" class="fl-textarea"></textarea>
                 </div>
-                
-                <!-- File Upload -->
-                <div class="flex flex-col space-y-2">
-                    <label class="block text-sm font-medium text-transparent select-none hidden lg:block">Spacer</label>
-                    <div class="flex-1 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center p-6 text-center hover:bg-gray-50 transition-colors relative">
-                        <input type="file" id="fileInput" accept=".txt,.csv,.md" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-                        <p class="text-sm text-gray-500 mb-4">Or upload a file (text-based)</p>
-                        <button class="bg-blue-500 text-white font-semibold py-3 px-6 rounded-xl w-full max-w-xs hover:bg-blue-600 transition-colors pointer-events-none">
-                            Upload Assessment
-                        </button>
-                        <p class="text-xs text-gray-400 mt-4 max-w-xs mx-auto">PDF uploads are not supported in this version. Voice input is not yet supported.</p>
+                <div>
+                    <label style="display:block; font-size:0.85rem; font-weight:500; color:transparent; margin-bottom:0.5rem; user-select:none;">Spacer</label>
+                    <div class="fl-upload-zone">
+                        <input type="file" id="fileInput" accept=".txt,.csv,.md">
+                        <p>Or upload a file (text-based)</p>
+                        <button class="fl-btn-secondary">Upload Assessment</button>
+                        <small>PDF uploads are not supported in this version. Voice input is not yet supported.</small>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Section 2: Settings -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Settings</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                
-                <!-- Age Groups -->
+        <div class="fl-card">
+            <h2>Settings</h2>
+            <div class="fl-grid-2">
                 <div>
-                    <h3 class="font-semibold text-gray-800 mb-4">Select Age Group / NZQA Level</h3>
-                    <div class="flex flex-wrap gap-3" id="ageGroupContainer">
-                        <!-- Buttons injected via JS -->
-                    </div>
+                    <h3>Select Age Group / NZQA Level</h3>
+                    <div id="ageGroupContainer" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
                 </div>
-
-                <!-- Personas -->
                 <div>
-                    <h3 class="font-semibold text-gray-800 mb-4">Select Student Personas</h3>
-                    <div class="flex flex-wrap gap-3" id="personasContainer">
-                        <!-- Buttons injected via JS -->
-                    </div>
+                    <h3>Select Student Personas</h3>
+                    <div id="personasContainer" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
                 </div>
-
             </div>
         </div>
 
         <!-- Disclaimer -->
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm text-sm text-slate-700 space-y-4">
-            <div class="flex items-center gap-2 border-b border-slate-200 pb-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <h3 class="font-bold text-slate-800 text-base">Transparency & Data Care</h3>
+        <div class="fl-disclaimer">
+            <div class="fl-disclaimer-header">
+                <svg xmlns="http://www.w3.org/2000/svg" style="width:1.1rem;height:1.1rem;color:#888;flex-shrink:0;" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <h3>Transparency &amp; Data Care</h3>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="fl-grid-2">
                 <div>
-                    <p><strong>System & Data Privacy:</strong> Powered by Gemini 2.5 Flash. Processing is strictly ephemeral. The text you enter is processed securely in real-time and is <strong>never stored, saved, or used to train AI models</strong>.</p>
-                    <p class="mt-2"><strong>Sources Consulted:</strong> Feedback is informed by New Zealand UDL and inclusive assessment guidance, including Ministry of Education resources, Teaching Council guidance, NZCER research, and selected Ako Aotearoa and peer-reviewed resources on neurodiversity and culturally responsive practice.</p>
+                    <p><strong>System &amp; Data Privacy:</strong> Powered by Gemini 2.5 Flash. Processing is strictly ephemeral. The text you enter is processed securely in real-time and is <strong>never stored, saved, or used to train AI models</strong>.</p>
+                    <p><strong>Sources Consulted:</strong> Feedback is informed by New Zealand UDL and inclusive assessment guidance, including Ministry of Education resources, Teaching Council guidance, NZCER research, and selected Ako Aotearoa and peer-reviewed resources on neurodiversity and culturally responsive practice.</p>
                 </div>
                 <div>
-                    <p><strong>Advisory Use Only:</strong> This tool analyzes initial assessment drafts to provide formative feedback. It does not make high-stakes decisions. <strong>Human oversight and educator judgment are strictly required.</strong></p>
-                    <p class="mt-2"><strong>Escalation:</strong> If evidence for an accommodation is mixed or you are unsure, please consult your school's inclusive education lead or SENCO.</p>
+                    <p><strong>Advisory Use Only:</strong> This tool analyses initial assessment drafts to provide formative feedback. It does not make high-stakes decisions. <strong>Human oversight and educator judgement are strictly required.</strong></p>
+                    <p><strong>Escalation:</strong> If evidence for an accommodation is mixed or you are unsure, please consult your school's inclusive education lead or SENCO.</p>
                 </div>
             </div>
         </div>
 
         <!-- Action Area -->
-        <div class="flex flex-col items-center space-y-4">
-            <button id="generateBtn" class="bg-green-500 text-white font-bold text-lg py-4 px-10 rounded-full shadow-md hover:bg-green-600 hover:shadow-lg transform hover:-translate-y-0.5 transition-all focus:outline-none focus:ring-4 focus:ring-green-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2">
+        <div style="display:flex; flex-direction:column; align-items:center; gap:1rem; margin-bottom:1.5rem;">
+            <button id="generateBtn" class="fl-btn-primary">
                 Generate Reflections
-                <svg id="loadingSpinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
+                <span id="loadingSpinner" class="fl-spinner"></span>
             </button>
-
-            <!-- Error Banner -->
-            <div id="errorBanner" class="hidden w-full max-w-2xl bg-red-500 text-white text-sm p-4 rounded-xl text-center font-medium shadow-md">
-                An error occurred. Please try again.
-            </div>
+            <div id="errorBanner" class="fl-error" style="display:none;">An error occurred. Please try again.</div>
         </div>
 
         <!-- Results Area -->
-        <div id="resultsArea" class="hidden bg-white rounded-2xl shadow-lg border border-gray-200 p-6 md:p-8 mt-8">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">Reflections & Recommendations</h2>
-            <div id="resultsContent" class="prose max-w-none text-gray-700">
-                <!-- Markdown content injected here -->
-            </div>
+        <div id="resultsArea" class="fl-results" style="display:none;">
+            <h2>Reflections &amp; Recommendations</h2>
+            <div id="resultsContent" class="fl-prose"></div>
         </div>
 
     </div>
 
     <script>
-        // --- Sample Assessment Text ---
         const sampleAssessment = `Assessment Title: Habitat Interrelationships Final Quiz
 
 Subject: Science
@@ -151,35 +453,32 @@ Conditions:
 - Students must handwrite all answers clearly on the provided lined paper.
 - All digital devices (including phones and text-to-speech) are banned during the test.`;
 
-        // --- State Management ---
         const state = {
-            assessmentText: sampleAssessment, // Set default text here
-            selectedAgeGroup: 'Secondary (Years 9-13)', // Default selection
-            selectedPersonas: new Set(['Dyslexic Learner', 'Māori Learner']) // Default selections
+            assessmentText: sampleAssessment,
+            selectedAgeGroup: 'Secondary (Years 9-13)',
+            selectedPersonas: new Set(['Dyslexic Learner', 'Māori Learner'])
         };
 
-        // --- Data Definitions ---
         const ageGroups = [
-            'Primary (Years 1-6)', 
-            'Intermediate (Years 7-8)', 
-            'Secondary (Years 9-13)', 
-            'Tertiary/Vocational (NZQA L1-3)', 
-            'Degree/Diploma (NZQA L4-7)', 
+            'Primary (Years 1-6)',
+            'Intermediate (Years 7-8)',
+            'Secondary (Years 9-13)',
+            'Tertiary/Vocational (NZQA L1-3)',
+            'Degree/Diploma (NZQA L4-7)',
             'Post-grad/Doctoral (NZQA L8-10)'
         ];
 
         const personas = [
-            'Dyslexic Learner', 
-            'ADHD Learner', 
-            'Autistic Learner', 
-            'ESL Learner', 
-            'Student Needing Extension', 
-            'Student with Limited Digital Access', 
-            'Māori Learner', 
+            'Dyslexic Learner',
+            'ADHD Learner',
+            'Autistic Learner',
+            'ESL Learner',
+            'Student Needing Extension',
+            'Student with Limited Digital Access',
+            'Māori Learner',
             'Pasifika Learner'
         ];
 
-        // --- DOM Elements ---
         const els = {
             ageGroupContainer: document.getElementById('ageGroupContainer'),
             personasContainer: document.getElementById('personasContainer'),
@@ -192,36 +491,22 @@ Conditions:
             resultsContent: document.getElementById('resultsContent')
         };
 
-        // --- Initialization ---
         function init() {
             renderAgeGroups();
             renderPersonas();
-            
-            // Populate the text area on load
             els.assessmentInput.value = state.assessmentText;
-
-            // Event Listeners
             els.assessmentInput.addEventListener('input', (e) => state.assessmentText = e.target.value);
             els.generateBtn.addEventListener('click', handleGenerate);
             els.fileInput.addEventListener('change', handleFileUpload);
         }
 
-        // --- UI Rendering ---
         function renderAgeGroups() {
             els.ageGroupContainer.innerHTML = '';
             ageGroups.forEach(group => {
-                const isSelected = state.selectedAgeGroup === group;
                 const btn = document.createElement('button');
-                btn.className = `px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    isSelected 
-                    ? 'bg-blue-600 text-white shadow-md' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`;
+                btn.className = 'fl-pill' + (state.selectedAgeGroup === group ? ' selected' : '');
                 btn.textContent = group;
-                btn.onclick = () => {
-                    state.selectedAgeGroup = group;
-                    renderAgeGroups(); // Re-render to update classes
-                };
+                btn.onclick = () => { state.selectedAgeGroup = group; renderAgeGroups(); };
                 els.ageGroupContainer.appendChild(btn);
             });
         }
@@ -231,67 +516,42 @@ Conditions:
             personas.forEach(persona => {
                 const isSelected = state.selectedPersonas.has(persona);
                 const btn = document.createElement('button');
-                btn.className = `px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    isSelected 
-                    ? 'bg-blue-600 text-white shadow-md' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                }`;
+                btn.className = 'fl-pill' + (isSelected ? ' selected' : '');
                 btn.textContent = persona;
                 btn.onclick = () => {
-                    if (isSelected) {
-                        state.selectedPersonas.delete(persona);
-                    } else {
-                        state.selectedPersonas.add(persona);
-                    }
-                    renderPersonas(); // Re-render to update classes
+                    isSelected ? state.selectedPersonas.delete(persona) : state.selectedPersonas.add(persona);
+                    renderPersonas();
                 };
                 els.personasContainer.appendChild(btn);
             });
         }
 
-        // --- File Handling ---
         function handleFileUpload(e) {
             const file = e.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
-            reader.onload = function(event) {
-                const text = event.target.result;
-                state.assessmentText = text;
-                els.assessmentInput.value = text;
+            reader.onload = (event) => {
+                state.assessmentText = event.target.result;
+                els.assessmentInput.value = state.assessmentText;
             };
             reader.readAsText(file);
-            // Reset input so the same file can be uploaded again if needed
             e.target.value = '';
         }
 
-        // --- Core Logic (API Call) ---
         async function handleGenerate() {
             const textToAnalyze = state.assessmentText.trim();
             const personasArr = Array.from(state.selectedPersonas);
-            
-            // Validation
-            if (!textToAnalyze) {
-                showError("Please enter or upload assessment details first.");
-                return;
-            }
-            if (!state.selectedAgeGroup) {
-                showError("Please select an Age Group / NZQA Level.");
-                return;
-            }
-            if (personasArr.length === 0) {
-                showError("Please select at least one Student Persona.");
-                return;
-            }
-            
-            // UI Loading State
-            setLoading(true);
-            els.errorBanner.classList.add('hidden');
-            els.resultsArea.classList.add('hidden');
 
-            // Construct Prompts
-            const systemInstruction = "You are an expert educational consultant specializing in inclusive education, universal design for learning (UDL), and equity in assessment. Your goal is to review teacher assessment plans and provide constructive, actionable feedback to ensure the assessment is fair, unbiased, and accessible to specific student personas. Format your response clearly using Markdown with headings and bullet points.";
-            
+            if (!textToAnalyze) { showError("Please enter or upload assessment details first."); return; }
+            if (!state.selectedAgeGroup) { showError("Please select an Age Group / NZQA Level."); return; }
+            if (personasArr.length === 0) { showError("Please select at least one Student Persona."); return; }
+
+            setLoading(true);
+            els.errorBanner.style.display = 'none';
+            els.resultsArea.style.display = 'none';
+
+            const systemInstruction = "You are an expert educational consultant specialising in inclusive education, universal design for learning (UDL), and equity in assessment. Your goal is to review teacher assessment plans and provide constructive, actionable feedback to ensure the assessment is fair, unbiased, and accessible to specific student personas. Format your response clearly using Markdown with headings and bullet points.";
+
             const userPrompt = `
 Please review the following assessment details through an equity lens.
 
@@ -305,31 +565,17 @@ Provide specific reflections on potential barriers these specific learners might
             `;
 
             try {
-                // Fetch from our Vercel Serverless Function Backend
-                const response = await fetch('/api/generate', {
+                const response = await fetch('/equity-lens/api/generate', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        userPrompt: userPrompt,
-                        systemInstruction: systemInstruction
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userPrompt, systemInstruction })
                 });
 
                 const data = await response.json();
+                if (!response.ok) throw new Error(data.error || "An error occurred while generating the reflections.");
 
-                if (!response.ok) {
-                    throw new Error(data.error || "An error occurred while generating the reflections.");
-                }
-
-                const generatedText = data.text;
-                
-                // Render Markdown and display
-                els.resultsContent.innerHTML = marked.parse(generatedText);
-                els.resultsArea.classList.remove('hidden');
-                
-                // Scroll to results
+                els.resultsContent.innerHTML = marked.parse(data.text);
+                els.resultsArea.style.display = 'block';
                 els.resultsArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
             } catch (err) {
@@ -341,25 +587,16 @@ Provide specific reflections on potential barriers these specific learners might
         }
 
         function setLoading(isLoading) {
-            if (isLoading) {
-                els.generateBtn.disabled = true;
-                els.loadingSpinner.classList.remove('hidden');
-                els.generateBtn.classList.add('opacity-75', 'cursor-not-allowed');
-            } else {
-                els.generateBtn.disabled = false;
-                els.loadingSpinner.classList.add('hidden');
-                els.generateBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-            }
+            els.generateBtn.disabled = isLoading;
+            els.loadingSpinner.style.display = isLoading ? 'block' : 'none';
         }
 
         function showError(message) {
             els.errorBanner.textContent = message;
-            els.errorBanner.classList.remove('hidden');
+            els.errorBanner.style.display = 'block';
         }
 
-        // Start App
         init();
-
     </script>
 </body>
 </html>
